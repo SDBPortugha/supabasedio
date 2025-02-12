@@ -1,17 +1,22 @@
 import { api } from '../services/api'
 
 export const getPosts = async () => {
-    const {data} = await api.get('/posts'); 
+    const { data } = await api.get('/posts');
 
     if(data){
         return data;
     }
 
-    return []
+    return [];
+
 }
 
-export const getPostBySlug = async (id) => {
-    const {data} = await api.get(`/post?id=eq.${id}`)
+export const getPostBySlug = async (slug) => {
+    const { data } = await api.get(`/posts?id=eq.${slug}&select=*`);
 
-    return {}
+    if(data){
+        return data;
+    }
+
+    return [];
 }
